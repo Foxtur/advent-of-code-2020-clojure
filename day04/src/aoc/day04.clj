@@ -67,6 +67,7 @@
                             :opt [::cid]))
 
 (defn solve-part01 []
+<<<<<<< HEAD
   (sp/def ::byr string?)
   (sp/def ::iyr string?)
   (sp/def ::eyr string?)
@@ -92,6 +93,8 @@
   (sp/def ::cid string?)
   (sp/def ::passport (sp/keys :req [::byr ::iyr ::eyr ::hgt ::hcl ::ecl ::pid]
                               :opt [::cid]))
+=======
+>>>>>>> 21765d0b85ace545ca067617f42e8d218d9d24d9
   (->> (read-input "input01.txt")
        (filter #(sp/valid? ::passport %))
        count))
@@ -99,8 +102,12 @@
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
+<<<<<<< HEAD
   (println "Solution part01:" (solve-part01))
   (println "Solution part02:" (solve-part02)))
+=======
+  (println "Solution part01:" (solve-part01)))
+>>>>>>> 21765d0b85ace545ca067617f42e8d218d9d24d9
 
 (comment
   (-main)
