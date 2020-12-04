@@ -18,16 +18,13 @@
   [& args]
   (let [input (read-input "input01.txt")]
     (println "Solution Part 01:" (solve input 3 1))
-    (println "Solution Part 02:"
-             (reduce * (map #(solve input (first %) (second %))
-                            [[1 1] [3 1] [5 1] [7 1] [1 2]])))))
+    (println "Solution Part 02:" (* (solve input 1 1)
+                                    (solve input 3 1)
+                                    (solve input 5 1)
+                                    (solve input 7 1)
+                                    (solve input 1 2)))))
 
 (comment
   (-main)
-  (let [input (read-input "input01.txt")]
-    (map
-     #(solve input (first %) (second %))
-     [[1 1] [3 1] [5 1] [7 1] [1 2]]))
-
   (solve (read-input "input01.txt") 3 1)
   (first (read-input "input01.txt")))
