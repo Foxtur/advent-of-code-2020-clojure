@@ -55,17 +55,6 @@
 (defn valid-passport-id? [id]
   (re-matches #"\d{9}" id))
 
-(sp/def ::byr #(valid-year? % 1920 2002))
-(sp/def ::iyr #(valid-year? % 2010 2020))
-(sp/def ::eyr #(valid-year? % 2020 2030))
-(sp/def ::hgt valid-height?)
-(sp/def ::hcl valid-hair-color?)
-(sp/def ::ecl valid-eye-color?)
-(sp/def ::pid valid-passport-id?)
-(sp/def ::cid string?)
-(sp/def ::passport (sp/keys :req [::byr ::iyr ::eyr ::hgt ::hcl ::ecl ::pid]
-                            :opt [::cid]))
-
 (defn solve-part01 []
   (sp/def ::byr string?)
   (sp/def ::iyr string?)
