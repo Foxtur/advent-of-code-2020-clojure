@@ -5,11 +5,6 @@
             [clojure.spec.alpha :as sp])
   (:gen-class))
 
-(defn join-lines [line1 line2]
-  (if (empty? line2)
-    (str line1 ";")
-    (str line1 " " line2)))
-
 (defn keywordize-ns-keys
   "Recursively transforms all map keys from strings to namespaced keywords."
   [ns m]
@@ -17,22 +12,17 @@
     ;; only apply to maps
     (w/postwalk (fn [x] (if (map? x) (into {} (map f x)) x)) m)))
 
-(defn entry->map [entry]
-  (->>
-   (map #(s/split % #":") entry)
-   (into {})
-   (keywordize-ns-keys "aoc.day04")))
+(defn parse-entry [entry]
+  (->> entry
+       (re-seq #"(\w{3}):(\S+)")
+       (map (comp vec next))
+       (into {})
+       (keywordize-ns-keys "aoc.day04")))
 
 (defn read-input [filename]
-  (with-open [rdr (io/reader filename)]
-    (->> rdr
-         line-seq
-         vec
-         (reduce join-lines)
-         (#(s/split % #";"))
-         (map #(s/trim %))
-         (map #(s/split % #" "))
-         (map entry->map))))
+  (->> (slurp filename)
+       (#(s/split % #"\R\R"))
+       (map parse-entry)))
 
 (defn valid-year? [year min max]
   (and (re-matches #"\d{4}" year)
@@ -70,6 +60,7 @@
        (filter #(sp/valid? ::passport %))
        count))
 
+
 (defn solve-part02 []
   (sp/def ::byr #(valid-year? % 1920 2002))
   (sp/def ::iyr #(valid-year? % 2010 2020))
@@ -98,13 +89,6 @@
   (join-lines "ecl:amb byr:1943 iyr:2014 eyr:2028" "pid:333051831")
 
   (let [input ["ecl:amb byr:1943 iyr:2014 eyr:2028" "pid:333051831" ""]]
-    (reduce join-lines input))
+    (reduce join-lines input)))
 
-  (sp/valid? ::byr "2002")
-  (sp/valid? ::byr "2003")
-  (sp/valid? ::hgt "60in")
-  (sp/valid? ::hgt "60")
-
-  (->> (read-input "input01.txt")
-       (filter #(sp/valid? ::passport %))))
 
