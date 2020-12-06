@@ -48,5 +48,24 @@
 (comment
   (-main)
 
+  ;; part01 binary seq conversion alternative
+  (->> (read-input)
+       (first)
+       (map #(case % \F 0 \B 1 \L 0 \R 1))
+       (reduce (fn [acc b]
+                 (-> (bit-shift-left acc 1)
+                     (bit-or b)))))
+
+  (->> (read-input)
+       (first)
+       (resolve-seat-id))
+
+  ;; part02 alternative solution
+  (->> (read-input)
+       (map resolve-seat-id)
+       (sort)
+       (partition 2)
+       (some (fn [[l h]] (when (= (- h l) 2) (inc l)))))
+
   ;; find missing number in sequence
   (reduce #(if (= 1 (- %2 %1)) %2 %1) [1 2 3 4 6]))
