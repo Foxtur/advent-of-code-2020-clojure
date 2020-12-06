@@ -2,17 +2,6 @@
   (:require [clojure.java.io :as io])
   (:gen-class))
 
-;; 128 rows nubmered 0 - 127
-;; 8 columns numbered 0 - 7
-
-;; front -> row 0 - 63
-;; back ->  row 64 - 127
-
-;; L - lower half
-;; R - upper half
-
-(def test-input "FBFBBFFRLR")
-
 (defn read-input []
   (with-open [rdr (io/reader "input.txt")]
     (->> rdr
