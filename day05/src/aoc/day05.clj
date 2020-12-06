@@ -19,20 +19,13 @@
          line-seq
          vec)))
 
-(defn resolve-seat-id [instructions]
-  (loop [path instructions
-         rmin 0
-         rmax 127
-         cmin 0
-         cmax 7]
-    (if (empty? path)
-      (+ cmin (* rmin 8))
-      (let [op (first path)]
-        (condp = op
-          \F (recur (rest path) rmin (+ rmin (quot (- rmax rmin) 2)) cmin cmax)
-          \B (recur (rest path) (inc (+ rmin (quot (- rmax rmin) 2))) rmax cmin cmax)
-          \L (recur (rest path) rmin rmax cmin (+ cmin (quot (- cmax cmin) 2)))
-          \R (recur (rest path) rmin rmax (inc (+ cmin (quot (- cmax cmin) 2))) cmax))))))
+(defn resolve-seat-id [code]
+  (let [binary-str (->> code
+                        (map #(case % \F 0 \B 1 \L 0 \R 1))
+                        (apply str))
+        row (Integer/parseInt (subs binary-str 0 7) 2)
+        col (Integer/parseInt (subs binary-str 7) 2)]
+    (+ col (* row 8))))
 
 (defn solve-part01 []
   (->> (read-input)
