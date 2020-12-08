@@ -1,4 +1,4 @@
-(ns aoc.day02
+(ns aoc2020.day02
   (:require [clojure.string :as s]
             [clojure.java.io :as io])
   (:gen-class))
@@ -47,12 +47,15 @@
   (not= (= letter (nth password (dec min)))
         (= letter (nth password (dec max)))))
 
-(defn -main
-  "Prints out solutions of day02 of AoC 2020"
-  [& args]
+(defn print-solution []
   (let [input (read-input)]
     (println "Solution Part 01:" (count (filter valid-part01? input)))
     (println "Solution Part 02:" (count (filter valid-part02? input)))))
+
+(defn -main
+  "Prints out solutions of day02 of AoC 2020"
+  [& args]
+  (print-solution))
 
 (comment
   (-main)

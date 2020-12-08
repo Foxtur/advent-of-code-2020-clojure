@@ -1,6 +1,6 @@
-(ns aoc.day06
+(ns aoc2020.day06
   (:require [clojure.string :as str]
-[clojure.java.io :as io]
+            [clojure.java.io :as io]
             [clojure.set :as set]))
 
 (def test-input "abc\n\na\nb\nc\n\nab\nac\n\na\na\na\na\n\nb")

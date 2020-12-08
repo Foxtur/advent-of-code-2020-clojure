@@ -1,3 +1,8 @@
 **/.calva/output-window/
 .nrepl-port
 .cpcache/
+.classpath
+.metals/
+.project
+.settings/
+target/

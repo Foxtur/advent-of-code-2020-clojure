@@ -10,5 +10,5 @@
    :main-opts ["-m" "cognitect.test-runner"
                "-d" "test"]}
   :uberjar {:extra-deps {seancorfield/depstar {:mvn/version "1.1.128"}}
-            :main-opts ["-m" "hf.depstar.uberjar" "aoc.jar"
-                        "-C" "-m" "aoc.main"]}}}
+            :main-opts ["-m" "hf.depstar.uberjar" "aoc2020.jar"
+                        "-C" "-m" "aoc2020.main"]}}}

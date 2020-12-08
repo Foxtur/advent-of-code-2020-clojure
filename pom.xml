@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>aoc</groupId>
-  <artifactId>day01</artifactId>
+  <groupId>aoc2020</groupId>
+  <artifactId>main</artifactId>
   <version>0.1.0-SNAPSHOT</version>
-  <name>aoc/day01</name>
-  <description>FIXME: my new application.</description>
-  <url>https://github.com/aoc/day01</url>
+  <name>aoc2020/main</name>
+  <description>Advent of Code 2020</description>
+  <url>https://github.com/Foxtur/advent-of-code-2020-clojure</url>
   <licenses>
     <license>
       <name>Eclipse Public License</name>
@@ -19,9 +19,9 @@
     </developer>
   </developers>
   <scm>
-    <url>https://github.com/aoc/day01</url>
-    <connection>scm:git:git://github.com/aoc/day01.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/aoc/day01.git</developerConnection>
+    <url>https://github.com/Foxtur/advent-of-code-2020-clojure</url>
+    <connection>scm:git:git://github.com/Foxtur/advent-of-code-2020-clojure.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/Foxtur/advent-of-code-2020-clojure.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
   <dependencies>

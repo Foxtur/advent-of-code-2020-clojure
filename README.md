@@ -6,7 +6,7 @@ Advent of Code 2020 solutions
 
 Run the project directly:
 
-    $ clojure -M -m aoc.day07
+    $ clojure -M -m aoc2020.main
 
 Run the project's tests (they'll fail until you edit them):
 
@@ -18,7 +18,7 @@ Build an uberjar:
 
 Run that uberjar:
 
-    $ java -jar aoc.jar
+    $ java -jar aoc2020.jar
 
 Copyright © 2020 Foxtur
 

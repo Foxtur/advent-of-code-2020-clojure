@@ -1,4 +1,4 @@
-(ns aoc.day05
+(ns aoc2020.day05
   (:require [clojure.java.io :as io])
   (:gen-class))
 
