@@ -4,7 +4,8 @@
 
 (defn read-input []
   (->> (slurp (io/resource "input_day08.txt"))
-       str/split-lines))
+       str/split-lines
+       vec))
 
 (defn handle-acc [{:keys [acc ip instructions] :as state} value]
   (assoc state
@@ -34,9 +35,9 @@
             follow-up-state (handle-opcode state opstr)
             follow-up-ip (:ip follow-up-state)]
         (if (contains? executed-instructions follow-up-ip) ;; don't run op on same address twice
-          (:acc state)
+          (assoc state :state :stopped)
           (recur follow-up-state (conj executed-instructions (:ip state)))))
-      (dissoc state :instructions))))
+      (assoc state :state :terminated))))
 
 (defn alter-and-run-program [state alter-inst-idx]
   (let [instructions (:instructions state)
@@ -52,14 +53,16 @@
 (defn alter-and-run-programm-till-termination [state]
   (let [instructions (:instructions state)]
     (loop [idx 0 results []]
-      (if (< idx (count instructions))
-        (recur (inc idx) (conj results (alter-and-run-program state idx)))
-        (filter map? results)))))
+      (let [terminated? (filter #(= :terminated (:state %)) results)]
+        (if (and (< idx (count instructions))
+                 (empty? terminated?))
+          (recur (inc idx) (conj results (alter-and-run-program state idx)))
+          terminated?)))))
 
-(def start-state {:acc 0, :ip 0, :instructions (read-input)})
+(def start-state {:acc 0, :ip 0, :state :ok, :instructions (read-input)})
 
 (defn solve-part01 []
-  (run-program start-state))
+  (:acc (run-program start-state)))
 
 (defn solve-part02 []
   (:acc (first (alter-and-run-programm-till-termination start-state))))
