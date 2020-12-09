@@ -44,16 +44,14 @@
   (walk-input actual-input 25))
 
 (defn solve-part02 []
-  (let [contiguous-set (find-contiguous-set test-input 127)
+  (let [contiguous-set (find-contiguous-set actual-input 104054607)
         min-val (apply min contiguous-set)
         max-val (apply max contiguous-set)]
     (+ min-val max-val)))
 
-
-
-
 (defn print-solution []
-  (println "Solution part01:" (solve-part01)))
+  (println "Solution part01:" (solve-part01))
+  (println "Solution part02:" (solve-part02)))
 
 (defn -main [& args]
   (print-solution))
