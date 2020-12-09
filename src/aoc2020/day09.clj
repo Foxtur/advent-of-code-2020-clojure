@@ -21,6 +21,18 @@
         sums (set (map (fn [[x y]] (+ x y)) combinations))]
     (contains? sums n)))
 
+(defn find-contiguous-set [input n]
+  (loop [s 0]
+    (let [result (reduce (fn [a b] (let [sum (+ a b)]
+                                     (cond
+                                       (< sum n) sum
+                                       (= sum n) (reduced b)
+                                       :else (reduced false))))
+                         (drop s input))]
+      (if result
+        (set (subvec input s (inc (.indexOf input result))))
+        (recur (inc s))))))
+
 (defn walk-input [input preamble-size]
   (->> input
        (partition (inc preamble-size) 1)
@@ -30,6 +42,15 @@
 
 (defn solve-part01 []
   (walk-input actual-input 25))
+
+(defn solve-part02 []
+  (let [contiguous-set (find-contiguous-set test-input 127)
+        min-val (apply min contiguous-set)
+        max-val (apply max contiguous-set)]
+    (+ min-val max-val)))
+
+
+
 
 (defn print-solution []
   (println "Solution part01:" (solve-part01)))
