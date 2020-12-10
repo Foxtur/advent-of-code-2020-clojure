@@ -22,13 +22,13 @@
 (defn find-contiguous-set [input n]
   (loop [s 0]
     (let [end-element (reduce (fn [a b] (let [sum (+ a b)]
-                                     (cond
-                                       (< sum n) sum
-                                       (= sum n) (reduced b)
-                                       :else (reduced false))))
-                         (drop s input))]
+                                          (cond
+                                            (< sum n) sum
+                                            (= sum n) (reduced b)
+                                            :else (reduced false))))
+                              (drop s input))]
       (if end-element
-        (set (subvec input s (inc (.indexOf input end-element))))
+        (subvec input s (inc (.indexOf input end-element)))
         (recur (inc s))))))
 
 (defn find-invalid-input [input preamble-size]
