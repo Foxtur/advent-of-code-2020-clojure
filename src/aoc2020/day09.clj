@@ -15,7 +15,7 @@
        (mapv #(Long/parseLong %))))
 
 (defn valid-number? [preamble n]
-  (let [combinations (vec (filter #(not= (first %) (second %)) (for [x preamble y preamble] [x y])))
+  (let [combinations (for [x preamble y preamble :when (not= x y)] [x y])
         sums (set (map (fn [[x y]] (+ x y)) combinations))]
     (contains? sums n)))
 
